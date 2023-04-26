@@ -2,12 +2,14 @@
    $servername = 'localhost';
    $username = 'root';
    $password= '';
+   #accessing server
 
 try {
     $conn = new PDO("mysql:host=$servername", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "CREATE DATABASE IF NOT EXISTS JulietJamesInteriors";
     $conn->exec($sql);
+    #creating database
     
     $sql = "USE JulietJamesInteriors";
     $conn->exec($sql);
@@ -25,5 +27,10 @@ try {
     $stmt1->execute();
     $stmt1->closeCursor(); 
 
-    $stmt2 = $conn->prepare("DROP TABLE IF EXISTS TblAdmin;
-    CREATE TABLE TblAdmin")
+}
+catch(PDOException $e)
+{
+    echo $sql . "<br>" . $e->getMessage();
+}
+$conn=Null;
+?>
