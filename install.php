@@ -14,18 +14,63 @@ try {
     $sql = "USE JulietJamesInteriors";
     $conn->exec($sql);
     echo "DB created successfully";
-    $stmt1 = $conn->prepare("DROP TABLE IF EXISTS TblCustomer;
-    CREATE TABLE TblCustomer 
-    (CustomerID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    Email VARCHAR(20) NOT NULL,
-    Password VARCHAR(60) NOT NULL,
+    $stmt1 = $conn->prepare("DROP TABLE IF EXISTS TblUser;
+    CREATE TABLE TblUser 
+    (UserID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    Role TINYINT(1) NOT NULL,
+    Email VARCHAR(50) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
     Forename VARCHAR(20) NOT NULL,
-    Surname VARCHAR(20) NOT NULL,
+    Surname VARCHAR(30) NOT NULL,
     Postcode VARCHAR(7) NOT NULL,
     Address VARCHAR(100) NOT NULL,
     Phone VARCHAR(11) NOT NULL)");
+    #Creates a table, adds in the necessary fields and their data types
     $stmt1->execute();
     $stmt1->closeCursor(); 
+
+    $stmt2 = $conn->prepare("DROP TABLE IF EXISTS TblStock;
+    CREATE TABLE TblStock 
+    (ItemID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    ItemName VARCHAR(30) NOT NULL,
+    ItemCategory VARCHAR(20) NOT NULL,
+    ItemDescription VARCHAR(200) NOT NULL,
+    ItemImage VARCHAR(100) NOT NULL,
+    ItemPrice DECIMAL(5,2) NOT NULL,
+    ItemStock INT(4) NOT NULL)");
+    $stmt2->execute();
+    $stmt2->closeCursor();
+    #Executes statement
+
+    $stmt3 = $conn->prepare("DROP TABLE IF EXISTS TblBasket;
+    CREATE TABLE TblBasket
+    (OrderID INT(7) NOT NULL,
+    ItemID INT(4) NOT NULL,
+    ItemQuantity INT(2) NOT NULL,
+    PRIMARY KEY(OrderID,ItemID))");
+    $stmt3->execute();
+    $stmt3->closeCursor();
+
+    $stmt4 = $conn->prepare("DROP TABLE IF EXISTS TblOrder;
+    CREATE TABLE TblOrder 
+    (OrderID INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    UserID INT(6) NOT NULL,
+    OrderDateTime DATETIME NOT NULL,
+    Dispatched BOOLEAN NOT NULL,
+    Payment BOOLEAN NOT NULL)");
+    $stmt4->execute();
+    $stmt4->closeCursor();
+
+    $stmt5 = $conn->prepare("DROP TABLE IF EXISTS TblBooking;
+    CREATE TABLE TblBooking 
+    (BookingID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    UserID INT(6) NOT NULL,
+    BookingDateTime DATETIME NOT NULL,
+    Price DECIMAL(5,2) NOT NULL,
+    Payment BOOLEAN NOT NULL)");
+    #Setting variable as boolean to see if client has paid or not
+    $stmt5->execute();
+    $stmt5->closeCursor();
 
 }
 catch(PDOException $e)
