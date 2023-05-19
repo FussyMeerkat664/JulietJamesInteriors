@@ -23,7 +23,10 @@ try {
     Forename VARCHAR(20) NOT NULL,
     Surname VARCHAR(30) NOT NULL,
     Postcode VARCHAR(7) NOT NULL,
-    Address VARCHAR(100) NOT NULL,
+    AddressL1 VARCHAR(50) NOT NULL,
+    AddressL2 VARCHAR(50) NOT NULL,
+    Town VARCHAR(20) NOT NULL,
+    County VARCHAR(30) NOT NULL,
     Phone VARCHAR(11) NOT NULL)");
     #Creates a table, adds in the necessary fields and their data types
     $stmt1->execute();
