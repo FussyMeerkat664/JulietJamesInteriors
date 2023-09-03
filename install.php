@@ -75,6 +75,25 @@ try {
     $stmt5->execute();
     $stmt5->closeCursor();
 
+
+    $stmt6 = $conn->prepare("DROP TABLE IF EXISTS Tblcategory;
+    CREATE TABLE Tblcategory 
+    (catID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    cat_name VARCHAR(200) NOT NULL)");
+    #Setting variable as boolean to see if client has paid or not
+    $stmt6->execute();
+    $stmt6->closeCursor();
+
+     // Create tblschedule table (Corrected the syntax error)
+     $stmt7 = $conn->prepare("CREATE TABLE IF NOT EXISTS tblschedule (
+        schedule_ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        Date DATE NOT NULL,
+        start_time VARCHAR(255) NOT NULL,
+        end_time VARCHAR(20) NOT NULL,
+        price VARCHAR(20) NOT NULL  
+    )");
+
+
 }
 catch(PDOException $e)
 {
