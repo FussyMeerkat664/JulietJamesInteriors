@@ -24,19 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `catagory`
+-- Table structure for table `category`
 --
 
-CREATE TABLE `catagory` (
+CREATE TABLE `category` (
   `CatID` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `catagory`
+-- Dumping data for table `category`
 --
 
-INSERT INTO `catagory` (`CatID`, `Name`) VALUES
+INSERT INTO `category` (`CatID`, `Name`) VALUES
 (1, 'Fabrics'),
 (2, 'Clothes'),
 (3, 'Shoes');
@@ -134,9 +134,9 @@ INSERT INTO `tbluser` (`UserID`, `Role`, `Email`, `Password`, `Forename`, `Surna
 --
 
 --
--- Indexes for table `catagory`
+-- Indexes for table `category`
 --
-ALTER TABLE `catagory`
+ALTER TABLE `category`
   ADD PRIMARY KEY (`CatID`);
 
 --
@@ -174,9 +174,9 @@ ALTER TABLE `tbluser`
 --
 
 --
--- AUTO_INCREMENT for table `catagory`
+-- AUTO_INCREMENT for table `category`
 --
-ALTER TABLE `catagory`
+ALTER TABLE `category`
   MODIFY `CatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --

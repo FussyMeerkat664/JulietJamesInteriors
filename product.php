@@ -6,7 +6,7 @@
 <body>
     <?php
         include_once('connection.php');
-        $stmt = $conn->prepare("SELECT * FROM `tblcategory`");
+        $stmt = $conn->prepare("SELECT * FROM `tblstock`");
         $stmt->execute();
         $options = '';
         while ($row = $stmt->fetch(PDO::FETCH_NUM))
@@ -22,7 +22,7 @@
                  </select><br>
         Description:<input type="text" name="description"><br>
         Image:<input type="file" name="image" accept="image/*"><br>
-        Price:<input type="text" name="price" ><br>
+        Price:<input type="decimal" name="price" ><br>
         Stock:<input type="text" name="stock"><br>
         <!-- Makes each form box on the webpage -->
         <input type="submit" value="Submit">

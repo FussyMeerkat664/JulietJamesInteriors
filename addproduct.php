@@ -10,18 +10,18 @@ try{
        $targetPath = $upload . $fileName;
        $move_file = move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
 	$stmt = $conn->prepare("INSERT INTO tblstock(ItemName, ItemCategory, ItemDescription, ItemImage, ItemPrice, ItemStock)VALUES 
-	(:name,:catagory,:description,:image,:price,:stock)");
+	(:name,:category,:description,:image,:price,:stock)");
 	// inserts the values into the table TblUser
     
 	$stmt->bindParam(':name', $_POST["name"]);
-    $stmt->bindParam(':catagory', $_POST["catagory"]);
+    $stmt->bindParam(':category', $_POST["category"]);
     $stmt->bindParam(':description', $_POST["description"]);
     $stmt->bindParam(':image', $targetPath, PDO::PARAM_STR);
     $stmt->bindParam(':price', $_POST["price"]);
     $stmt->bindParam(':stock', $_POST["stock"]);
     $data = [
         ':name' => $_POST["name"],
-        ':catagory' => $_POST["catagory"],
+        ':category' => $_POST["category"],
         ':description' => $_POST["description"],
         ':image' => $targetPath,
         ':price' =>  $_POST["price"],
