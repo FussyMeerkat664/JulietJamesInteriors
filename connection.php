@@ -12,5 +12,6 @@ try {
 catch(PDOException $e)
     {
     echo "Connection failed: " . $e->getMessage()."<br>";
+    #displays error message if unable to connect to the database
     }
 ?>
