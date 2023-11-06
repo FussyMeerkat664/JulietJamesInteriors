@@ -1,7 +1,9 @@
 <?php  
-// session_start();
+session_start();
 include('connection.php');
-
+if(!isset($_SESSION['admin'])){
+  header('location:index.php');
+}
 ?>
 <!-- topbar -->
 <?php include('topbar.php'); ?>

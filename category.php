@@ -2,7 +2,7 @@
 
 
 try{
-	include_once('connection.php');
+	include_once('Admin/connection.php');
     if(isset($_POST['add_cat'])){
 	array_map("htmlspecialchars", $_POST);
 	$stmt = $conn->prepare("INSERT INTO Tblcategory(cat_name	

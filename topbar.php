@@ -60,7 +60,7 @@ $name = '';
   <div class="navbar-nav">
     <div class="nav-item">
       <a class="btn me-2  btn-outline-danger align-items-center rounded text-white" href="logout.php">
-          Sign Out
+          SignOut
       </a>
     </div>
   </div>

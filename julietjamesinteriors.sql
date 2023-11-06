@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2023 at 10:27 AM
+-- Generation Time: Sep 04, 2023 at 12:39 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,26 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
---
-
-CREATE TABLE `category` (
-  `CatID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `category`
---
-
-INSERT INTO `category` (`CatID`, `Name`) VALUES
-(1, 'Fabrics'),
-(2, 'Clothes'),
-(3, 'Shoes');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tblbasket`
 --
 
@@ -52,6 +32,14 @@ CREATE TABLE `tblbasket` (
   `ItemID` int(4) NOT NULL,
   `ItemQuantity` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblbasket`
+--
+
+INSERT INTO `tblbasket` (`OrderID`, `ItemID`, `ItemQuantity`) VALUES
+(0, 1, 1),
+(0, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -70,6 +58,25 @@ CREATE TABLE `tblbooking` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tblcategory`
+--
+
+CREATE TABLE `tblcategory` (
+  `catID` int(4) UNSIGNED NOT NULL,
+  `cat_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblcategory`
+--
+
+INSERT INTO `tblcategory` (`catID`, `cat_name`) VALUES
+(1, 'Sandwiches'),
+(2, 'Mobiles');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tblorder`
 --
 
@@ -79,6 +86,19 @@ CREATE TABLE `tblorder` (
   `OrderDateTime` datetime NOT NULL,
   `Dispatched` tinyint(1) NOT NULL,
   `Payment` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblschedule`
+--
+
+CREATE TABLE `tblschedule` (
+  `schedule_ID` int(6) UNSIGNED NOT NULL,
+  `Date` date NOT NULL,
+  `start_time` varchar(255) NOT NULL,
+  `end_time` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -96,6 +116,14 @@ CREATE TABLE `tblstock` (
   `ItemPrice` decimal(5,2) NOT NULL,
   `ItemStock` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblstock`
+--
+
+INSERT INTO `tblstock` (`ItemID`, `ItemName`, `ItemCategory`, `ItemDescription`, `ItemImage`, `ItemPrice`, `ItemStock`) VALUES
+(1, 'Lemon Sandwich', 'Sandwiches', 'descript here', 'uploadsImg/young-woman-looking-through-hand-frame-against-black-backdrop.jpg', 123.00, 121),
+(2, 'Lemon Sandwich', 'Sandwiches', 'descript here', 'uploadsImg/young-woman-looking-through-hand-frame-against-black-backdrop.jpg', 123.00, 121);
 
 -- --------------------------------------------------------
 
@@ -123,21 +151,12 @@ CREATE TABLE `tbluser` (
 --
 
 INSERT INTO `tbluser` (`UserID`, `Role`, `Email`, `Password`, `Forename`, `Surname`, `Postcode`, `AddressL1`, `AddressL2`, `Town`, `County`, `Phone`) VALUES
-(1, 0, 'shahaleem751@gmail.com', 'Aleem@123', 'Aleem', 'Bukhari', '6000', 'Airport road', 'jamilabad Multan', 'Multan', 'Pakistan', '3006398890'),
-(3, 0, 'amasanas42@gmail.com', '$2y$10$3IXxaxkHZ.ugucUKTKPxoOmcWoRqYKL9PQ2J2SSHQDTE3hQTQRvR2', 'amas', 'anas', '60000', 'city multan', 'jamilabad', 'multan', 'pakistan', '03043939393'),
-(4, 0, 'amas123@gmail.com', '$2y$10$i2VbzkOFxbRgTNMbT.OzdOnHte1lUPJS05dLhtNbTv2U1sNaMdlZG', 'amas', 'anas', '60000', 'city multan', 'jamilabad', 'multan', 'Pakistan', '3043939393'),
-(5, 0, 'asifaqib123@gmail.com', '$2y$10$.9.PO2ZeJi73Sr8Z9PemreeCUlw.g.wR8UXVd/mgck2rnFWY90Sla', 'asif', 'aqib', '60000', 'city multan', 'jamilabad', 'multan', 'Pakistan', '3043939393'),
-(7, 0, 'abidkhan123@gmail.com', '$2y$10$eJszN1rk0NNaXDlR5rM8/.mO6Tv6lAghhTy77yGlO4Lp9Ih4IhzZe', 'Abid', 'Khan', '60000', 'city multan', 'jamilabad', 'multan', 'Pakistan', '3043939393');
+(7, 1, 'admin@gmail.com', '$2y$10$ZIZWrwl.crrL8842dZlOCeelbgmTWJSbK2te5wzI4dDjNwHhhPRVO', 'admin', 'admin', '66000', 'addrees 1', 'address 2', 'Multan ', 'Pakistan', '0321456456'),
+(8, 0, 'user@gmail.com', '$2y$10$ubGx.7RxGeQjoQpV.lc1c.ksDl.G.96jAq0hGpGEdcjKAn5rvWOdK', 'user', 'user', '66700', 'address 1 ', 'address 2', 'Lahore', 'Pakistan', '0312456456');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`CatID`);
 
 --
 -- Indexes for table `tblbasket`
@@ -152,10 +171,22 @@ ALTER TABLE `tblbooking`
   ADD PRIMARY KEY (`BookingID`);
 
 --
+-- Indexes for table `tblcategory`
+--
+ALTER TABLE `tblcategory`
+  ADD PRIMARY KEY (`catID`);
+
+--
 -- Indexes for table `tblorder`
 --
 ALTER TABLE `tblorder`
   ADD PRIMARY KEY (`OrderID`);
+
+--
+-- Indexes for table `tblschedule`
+--
+ALTER TABLE `tblschedule`
+  ADD PRIMARY KEY (`schedule_ID`);
 
 --
 -- Indexes for table `tblstock`
@@ -174,16 +205,16 @@ ALTER TABLE `tbluser`
 --
 
 --
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `CatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `tblbooking`
 --
 ALTER TABLE `tblbooking`
   MODIFY `BookingID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tblcategory`
+--
+ALTER TABLE `tblcategory`
+  MODIFY `catID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tblorder`
@@ -192,10 +223,16 @@ ALTER TABLE `tblorder`
   MODIFY `OrderID` int(7) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tblschedule`
+--
+ALTER TABLE `tblschedule`
+  MODIFY `schedule_ID` int(6) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tblstock`
 --
 ALTER TABLE `tblstock`
-  MODIFY `ItemID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ItemID` int(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbluser`

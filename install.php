@@ -49,6 +49,7 @@ try {
     CREATE TABLE TblBasket
     (OrderID INT(7) NOT NULL,
     ItemID INT(4) NOT NULL,
+    UserID INT(4) NOT NULL,
     ItemQuantity INT(2) NOT NULL,
     PRIMARY KEY(OrderID,ItemID))");
     $stmt3->execute();

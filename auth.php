@@ -1,7 +1,7 @@
 <?php
-
+session_start();
 try{
-	include_once('connection.php');
+	include_once('Admin/connection.php');
 	array_map("htmlspecialchars", $_POST);
 	if(isset($_POST['signup']))
 	{
@@ -44,7 +44,8 @@ try{
 		$lastInsertId = $conn->lastInsertId();
 		if($lastInsertId)
 		{
-		echo "You have signed in Scuccessfully";
+			$_SESSION['register'] = true;
+				header('location:login.php');
 		}
 		else 
 		{

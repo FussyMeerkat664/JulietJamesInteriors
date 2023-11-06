@@ -170,7 +170,7 @@ error:function (){
     </div>
   </fieldset>
 </form>
-
+<a href="index.php" style="display:block;margin-left:200px">or Login</a>
 </body>
 </html>
 

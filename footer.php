@@ -2,7 +2,7 @@
         <div class="container py-4">
           <div class="text-center">
             <span class="text-white" style="font-size: 15px;">
-              Copyright Hector James &copy; <script> document.write(new Date().getFullYear()); </script>
+              Copyright &copy; <script> document.write(new Date().getFullYear()); </script> -
             </span>
           </div>
         </div>

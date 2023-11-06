@@ -1,9 +1,10 @@
 <?php
+session_start();
 try{
-	include_once('connection.php');
+	include_once('Admin/connection.php');
 	error_reporting(0);
 
-if(isset($_POST['addItem'])){
+if(isset($_POST['addtoCart'])){
     $pid = $_POST['pid'];
     // $pprice =$_POST['pprice'];
     // $pimage = $_POST['pimage'];
@@ -25,14 +26,18 @@ $stmts->bindParam(":pid" , $pid);
 $stmts->execute();
 $rowCount = $stmts->fetchColumn();  
 if($rowCount > 0){
-    echo "Already Exists";
+    // echo "Already Exists<br>";
+    $_SESSION['exists'] = true;
+    echo '<a href="allprducts.php">Conitune Shopping</a>';
 }else{
     $execute = $stmt->execute();
 
     // //sets all of the entries to their corresponding fields in the table
     if($execute)
     {
-    echo "Add to Cart";
+    // echo "Added to Cart<br>";
+    $_SESSION['added'] = true;
+    echo '<a href="allprducts.php">Conitune Shopping</a>';
     // header("location:index.php");
     }else 
     {
@@ -40,21 +45,6 @@ if($rowCount > 0){
     }
 }
 
-
-
-// $stmt = $conn->prepare("SELECT ItemID FROM tblbasket WHERE ItemID = ?");
-// $stmt->bind_param('s' , $pid);
-// $stmt->execute();
-// $res = $stml->fetch(PDO::FETCH_ASSOC);
-// $r = $res->fetch_assoc();
-// $code =$res['ItemID'];
-// if(!$code){
-//     // echo "inserted";
-
-//     header("location:allprducts.php");
-// }else{
-//     echo "not";
-// }
 }
     }
     

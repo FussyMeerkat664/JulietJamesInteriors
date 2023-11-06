@@ -41,7 +41,19 @@
       Manage Schedule<strong class="h6 p-0 m-0"></strong>
         </a>
       </li>
-      
+      <li class="mb-1">
+        <i class="text-white fs-5 fa-solid fa-lock"></i>
+        <a class="btn btn-toggle align-items-center rounded p-2" style="color:white;" href="manage_privacy.php">
+        Privacy & Policy<strong class="h6 p-0 m-0"></strong>
+        </a>
+      </li>
+      <li class="mb-1">
+        <i class="text-white fs-5 fa-solid fa-scroll"></i>
+        <a class="btn btn-toggle align-items-center rounded p-2" style="color:white;" href="manage_term.php">
+        Term & Conditions<strong class="h6 p-0 m-0"></strong>
+        </a>
+      </li>
+  
     </ul>
   </div>
 </div>
